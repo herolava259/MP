@@ -1,0 +1,38 @@
+### tải image tf serving
+docker pull tensorflow/serving
+
+### clone tfs repo
+
+%%bash
+mkdir -p /tmp/tfserving
+
+cd /tmp/tfserving
+
+git clone https://github.com/tensorflow/serving
+
+## chạy docker
+
+docker run name-of-the-image
+
+## chay chỉ đinh cổng và xóa sau khi tắt
+## MODEL_NAME = model _weight
+
+%%bash
+docker run --rm -p 8501:8501 \
+  --mount type=bind,\
+source=/tmp/tfserving/serving/tensorflow_serving/servables/tensorflow/testdata/saved_model_half_plus_two_cpu,\
+target=/models/half_plus_two \
+  -e MODEL_NAME=half_plus_two -t tensorflow/serving &
+
+## test hoạt động
+
+%%bash
+curl -d '{"instances": [1.0, 2.0, 5.0]}' \
+  -X POST http://localhost:8501/v1/models/half_plus_two:predict
+
+%%bash
+docker ps
+docker stop container_name
+docker stop laughing_yonath
+
+
