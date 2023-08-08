@@ -1,6 +1,6 @@
 /data/
 /model_weights/
 /preprocessing/data2.tfrecords
-/fullstack_web/Medical_web/frontend/node_modules
+/fullstack_web/Medical_web/frontend/node_modules/
 *.h5
 *.tfrecords

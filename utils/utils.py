@@ -176,3 +176,4 @@ class DataGenerator(tf.keras.utils.Sequence):
         "Apply augmentation"
         X_aug, y_aug = aug_batch(X, y)
         return X_aug, to_categorical(y_aug, self.n_classes)
+
